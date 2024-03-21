@@ -7,7 +7,7 @@ interface SearchBarProps {
 const SearchBar = () => {
   return (
     <div className='
-    
+    max-sm:w-auto
     '>
    <form
     action=""
@@ -20,6 +20,7 @@ const SearchBar = () => {
     p-1
     relative
     w-[200px]
+    max-sm:w-auto
     "
    >
     <input 

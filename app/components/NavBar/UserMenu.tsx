@@ -24,7 +24,10 @@ const UserMenu: React.FC<UserMenuProps>= ({
       size={30}
       className="
       transition
+      text-gray-600
       cursor-pointer
+      max-sm:w-[40px]
+      max-sm:h-[40px]
       "
       />
       <Image 
@@ -32,6 +35,10 @@ const UserMenu: React.FC<UserMenuProps>= ({
       alt='user Image'
       width={48}
       height={48}
+      className="
+      hidden
+      sm:block
+      "
       />
 
     </div>

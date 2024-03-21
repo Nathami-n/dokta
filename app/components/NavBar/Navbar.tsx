@@ -1,20 +1,20 @@
-import { SearchBar, UserMenu } from ".."
+import { SearchBar, UserMenu, FilterLogos } from ".."
 
 const Navbar = () => {
   return (
     <div className="
     border-b
-    shadow-b
+    shadow-md
     p-3
     md:p-5
     ">
         <div className="
-        max-w-6xl
+        max-w-7xl
         mx-auto
         flex
         justify-between
         items-center
-        
+        max-sm:gap-3
         ">
             <div className="
             cursor-pointer
@@ -26,6 +26,7 @@ const Navbar = () => {
              text-blue-500
               hover:text-red-500
               transition
+              max-sm:hidden
              "
              >Dokta 
              <span className="
@@ -41,6 +42,7 @@ const Navbar = () => {
             <SearchBar/>
             <UserMenu/>
         </div>
+        <FilterLogos/>
     </div>
   )
 }
