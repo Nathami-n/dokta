@@ -4,6 +4,7 @@ const Navbar = () => {
   return (
     <div className="
     border-b
+    shadow-b
     p-3
     md:p-5
     ">
@@ -16,17 +17,25 @@ const Navbar = () => {
         
         ">
             <div className="
-            rounded-full
-            w-18
-            h-18
-            p-4
             cursor-pointer
-            hover:bg-rose-500
-            transition
-            bg-blue-500
-            text-white
             ">
-             Dokta
+             <h1
+             className="
+             text-3xl
+             font-bold
+             text-blue-500
+              hover:text-red-500
+              transition
+             "
+             >Dokta 
+             <span className="
+             font-extrabold
+             text-rose-600
+             text-4xl
+             ">
+              .
+              </span>
+              </h1>
                 
             </div>
             <SearchBar/>
