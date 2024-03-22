@@ -16,6 +16,7 @@ const Logo: React.FC<LogoProps> = ({
 }) => {
     const params = useSearchParams()
     const pathname = usePathname()
+    const filter = params.get('filter')
     const handleHref = useCallback((name: string, value: string) => {
         const newParams = new URLSearchParams(params.toString());
         newParams.set(name, value);
@@ -28,13 +29,14 @@ const Logo: React.FC<LogoProps> = ({
                 'filter', title
             )}>
                 <div
-                    className={`
-         flex
-         flex-col
-         gap-1
-         items-center
-         cursor-pointer
-        `}>
+                    className = {`
+                    ${title == filter ? 'opacity-100 border-b-2 border-blue-500 flex-shrink-0': 'opacity-70 flex-shrink-0'}
+                    flex 
+                    flex-col
+                    gap-1
+                    items-center
+                    `}
+                    >
                     <button
                         type='button'
                     >
@@ -46,7 +48,7 @@ const Logo: React.FC<LogoProps> = ({
                         />
                     </button>
 
-                    <p>{title}</p>
+                    <p className="text-xs">{title}</p>
 
                 </div>
             </Link>

@@ -1,6 +1,8 @@
+'use client'
 import { RxHamburgerMenu } from "react-icons/rx"
 import Image from 'next/image'
 import Register from '@/app/components/Modal/Register'
+import useLoginStore from '@/app/zustand/RegisterStore'
 interface UserMenuProps {
 avatarUrl?: string
 }
@@ -8,6 +10,7 @@ const UserMenu: React.FC<UserMenuProps>= ({
   avatarUrl
 }
 ) => {
+  const openOrCloseModal = useLoginStore((state)=> state.onClose)
   return (
     <div className="
     flex
@@ -22,6 +25,7 @@ const UserMenu: React.FC<UserMenuProps>= ({
     transition
     ">
       <RxHamburgerMenu 
+      onClick={openOrCloseModal}
       size={30}
       className="
       transition
@@ -32,6 +36,7 @@ const UserMenu: React.FC<UserMenuProps>= ({
       "
       />
       <Image 
+      onClick={openOrCloseModal}
       src={`${avatarUrl ? avatarUrl : 'https://t3.ftcdn.net/jpg/05/60/26/08/360_F_560260880_O1V3Qm2cNO5HWjN66mBh2NrlPHNHOUxW.jpg'}`}
       alt='user Image'
       width={48}
@@ -44,7 +49,6 @@ const UserMenu: React.FC<UserMenuProps>= ({
     <Register
     login='login'
     signup='signup'
-    open
     />
     </div>
   )

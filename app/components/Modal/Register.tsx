@@ -1,18 +1,18 @@
 
+import useLoginStore from '@/app/zustand/RegisterStore'
 import Link from 'next/link'
 interface RegisterModalProps {
     login?: string
     signup?:string
-    logout?:string
-    open:boolean
 }
 
 const Register: React.FC<RegisterModalProps> = ({
     login,
     signup,
-    logout,
-    open
 }) => {
+
+    const open = useLoginStore((state)=> state.open)
+    const close = useLoginStore((state) => state.onClose)
   return (
     <>
     {open ? (
@@ -32,6 +32,7 @@ const Register: React.FC<RegisterModalProps> = ({
     "
     >
         <Link 
+        onClick={close}
         className='
         text-lg
         font-semibold
@@ -46,6 +47,7 @@ const Register: React.FC<RegisterModalProps> = ({
         > {signup}
         </Link>
         <Link 
+         onClick={close}
          className='
          text-lg
          font-semibold
