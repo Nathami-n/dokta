@@ -2,6 +2,7 @@
 import { useState } from 'react'
 import { useForm, FieldValues, SubmitHandler } from 'react-hook-form';
 import Link from 'next/link'
+import { RxEyeOpen, RxEyeClosed } from 'react-icons/rx';
 
 const SignUp = () => {
   const [isOpen, setIsOpen] = useState(false)
@@ -52,6 +53,7 @@ const SignUp = () => {
         <div className='
        flex
        flex-col
+       gap-2
        '>
           <label
             htmlFor="username"
@@ -64,20 +66,24 @@ const SignUp = () => {
           <input
             className='
         outline-none
-        p-3
+        p-4
         border
         rounded-md
         w-full
-        '
-            placeholder='
-        username...
+        focus:border-green-300
         '
             type='text'
             id='username'
             {...register('username')}
           />
         </div>
-        <div>
+        <div 
+         className='
+         flex
+         flex-col
+         gap-2
+         '
+        >
           <label
             className='
          text-bold
@@ -91,10 +97,11 @@ const SignUp = () => {
             {...register('email')}
             className='
        outline-none
-       p-3
+       p-4
        border
        rounded-md
        w-full
+       focus:border-green-300
        '
 
           />
@@ -103,6 +110,7 @@ const SignUp = () => {
        flex
        flex-col
        gap-2
+       relative
        '>
           <label
             htmlFor='password'
@@ -115,13 +123,41 @@ const SignUp = () => {
           <input
             className='
         outline-none
-        p-3
+        relative
+        p-4
         border
         rounded-md
         w-full
+        focus:border-green-300
         '
             type={`${isOpen ? 'password' : 'text'}`}
           />
+          <div 
+          onClick={()=> setIsOpen((prev)=>(!prev))}
+          className='
+          absolute
+          right-3
+          top-12
+          '>
+            { isOpen ? 
+            <RxEyeOpen 
+            size={30}
+            className='
+            cursor-pointer
+            text-blue-500
+
+            '
+            /> : 
+            <RxEyeClosed 
+             size={30}
+              className='
+              cursor-pointer
+              text-rose-500
+
+              '
+            />
+            }
+          </div>
         </div>
 
         <button className='
