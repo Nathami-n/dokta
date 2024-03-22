@@ -14,6 +14,7 @@ const Listing = () => {
             font-bold
             text-2xl
             text-center
+            text-rose-400
 
             '
             >Which of these best describe your services?</h1>

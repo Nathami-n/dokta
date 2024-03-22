@@ -10,7 +10,7 @@ const Categories = () => {
    <div 
    className="
    grid
-   grid-cols-4
+   sm:grid-cols-4
    mt-12
    w-[80%]
    mx-auto
@@ -20,16 +20,16 @@ const Categories = () => {
         return(
             <div 
             onClick={()=> setSelectedCategory(item.title)}
-            className={`
-            ${selectedCategory === item.title ? 'border-rose-500': ''}
+            className={`${ selectedCategory === item.title ? 'border-blue-500 transition-all': ''}
             flex
             flex-col
             justify-center
             cursor-pointer
             border
+            rounded-lg
             p-4
             items-center
-            "
+        `}
             key={item.id}>
             <Image
             src={item.logoUrl}
@@ -40,8 +40,7 @@ const Categories = () => {
             <h1 
             className="
             text-xs
-
-            `}
+            "
             >{item.title}</h1>
             </div>
         )
