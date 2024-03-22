@@ -1,5 +1,6 @@
 import { RxHamburgerMenu } from "react-icons/rx"
 import Image from 'next/image'
+import Register from '@/app/components/Modal/Register'
 interface UserMenuProps {
 avatarUrl?: string
 }
@@ -40,7 +41,11 @@ const UserMenu: React.FC<UserMenuProps>= ({
       sm:block
       "
       />
-
+    <Register
+    login='login'
+    signup='signup'
+    open
+    />
     </div>
   )
 }

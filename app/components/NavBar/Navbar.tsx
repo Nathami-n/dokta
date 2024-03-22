@@ -1,4 +1,5 @@
 import { SearchBar, UserMenu, FilterLogos } from ".."
+import Link from 'next/link'
 
 const Navbar = () => {
   return (
@@ -7,6 +8,7 @@ const Navbar = () => {
     shadow-md
     p-3
     md:p-5
+    relative
     ">
         <div className="
         max-w-7xl
@@ -19,7 +21,7 @@ const Navbar = () => {
             <div className="
             cursor-pointer
             ">
-             <h1
+             <Link href='/'
              className="
              text-3xl
              font-bold
@@ -36,11 +38,12 @@ const Navbar = () => {
              ">
               .
               </span>
-              </h1>
+              </Link>
                 
             </div>
             <SearchBar/>
             <UserMenu/>
+
         </div>
         <FilterLogos/>
     </div>

@@ -1,10 +1,14 @@
 'use client'
 import {medicalSpecializations} from '@/app/utils/specials'
 import Logo from './Logo'
+import { usePathname } from 'next/navigation'
 const FilterLogos = () => {
+    const pathname = usePathname()
+
   return (
     <div 
-    className="
+    className={`
+    ${pathname !== '/'? 'hidden': 'block'}
     flex
     gap-4
     overflow-x-auto
@@ -13,8 +17,8 @@ const FilterLogos = () => {
     no-scrollbar
     max-w-7xl
     mx-auto
-"
-    >
+`
+   } >
         {
             medicalSpecializations.map((item)=> {
                 return (<Logo 
