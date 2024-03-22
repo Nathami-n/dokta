@@ -15,7 +15,6 @@ const Logo: React.FC<LogoProps> = ({
     title
 }) => {
     const params = useSearchParams()
-    console.log(params.get('filter'))
     const pathname = usePathname()
     const handleHref = useCallback((name: string, value: string) => {
         const newParams = new URLSearchParams(params.toString());
