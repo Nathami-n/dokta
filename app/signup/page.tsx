@@ -15,7 +15,9 @@ const SignUp = () => {
     }
   } = useForm<FieldValues>();
 
-  const onSubmit: SubmitHandler<FieldValues> = (data) => { }
+  const onSubmit: SubmitHandler<FieldValues> = (data) => { 
+    console.log(data)
+  }
 
   return (
     <section
@@ -130,7 +132,8 @@ const SignUp = () => {
         w-full
         focus:border-green-300
         '
-            type={`${isOpen ? 'password' : 'text'}`}
+            type={`${isOpen ? 'text' : 'password'}`}
+            {...register('password')}
           />
           <div 
           onClick={()=> setIsOpen((prev)=>(!prev))}
@@ -176,7 +179,7 @@ const SignUp = () => {
           className=''
         >
           Already have an account?
-          <Link href={'/login'}>
+          <Link href={'/signIn'}>
             <span className='text-rose-500 hover:underline ml-1 font-bold'>Login now</span>
           </Link>
         </div>
