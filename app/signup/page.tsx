@@ -3,20 +3,21 @@ import { useState } from 'react'
 import { useForm, FieldValues, SubmitHandler } from 'react-hook-form';
 import Link from 'next/link'
 import { RxEyeOpen, RxEyeClosed } from 'react-icons/rx';
+import { createUser } from '@/app/actions/userActions'
 
 const SignUp = () => {
   const [isOpen, setIsOpen] = useState(false)
   const {
     register,
     handleSubmit,
-    watch,
     formState: {
       errors
     }
   } = useForm<FieldValues>();
 
-  const onSubmit: SubmitHandler<FieldValues> = (data) => { 
-    console.log(data)
+  const onSubmit: SubmitHandler<FieldValues> = async (data) => {
+   const value = await createUser(data);
+   console.log(value)
   }
 
   return (
@@ -79,8 +80,8 @@ const SignUp = () => {
             {...register('username')}
           />
         </div>
-        <div 
-         className='
+        <div
+          className='
          flex
          flex-col
          gap-2
@@ -135,30 +136,30 @@ const SignUp = () => {
             type={`${isOpen ? 'text' : 'password'}`}
             {...register('password')}
           />
-          <div 
-          onClick={()=> setIsOpen((prev)=>(!prev))}
-          className='
+          <div
+            onClick={() => setIsOpen((prev) => (!prev))}
+            className='
           absolute
           right-3
           top-12
           '>
-            { isOpen ? 
-            <RxEyeOpen 
-            size={30}
-            className='
+            {isOpen ?
+              <RxEyeOpen
+                size={30}
+                className='
             cursor-pointer
             text-blue-500
 
             '
-            /> : 
-            <RxEyeClosed 
-             size={30}
-              className='
+              /> :
+              <RxEyeClosed
+                size={30}
+                className='
               cursor-pointer
               text-rose-500
 
               '
-            />
+              />
             }
           </div>
         </div>

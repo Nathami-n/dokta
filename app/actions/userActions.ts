@@ -1,12 +1,9 @@
 'use server'
 import client from '@/app/utils/prismaClient'
 import bcrypt from 'bcrypt'
-interface UserToCreate {
-    username: string
-    password: string
-    email: string
-}
-const createUser =  async (data: UserToCreate) => {
+import { FieldValues } from 'react-hook-form'
+
+ export const createUser =  async (data: FieldValues) => {
     const {username, email, password} = data;
     const hashedPassword = await bcrypt.hash(password, 10);
     const newUser = {
