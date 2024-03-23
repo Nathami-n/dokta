@@ -4,8 +4,11 @@ import { useForm, FieldValues, SubmitHandler } from 'react-hook-form';
 import Link from 'next/link'
 import { RxEyeOpen, RxEyeClosed } from 'react-icons/rx';
 import { createUser } from '@/app/actions/userActions'
+import toast from 'react-hot-toast';
+import { useRouter } from 'next/navigation'
 
 const SignUp = () => {
+  const router = useRouter();
   const [isOpen, setIsOpen] = useState(false)
   const {
     register,
@@ -16,8 +19,19 @@ const SignUp = () => {
   } = useForm<FieldValues>();
 
   const onSubmit: SubmitHandler<FieldValues> = async (data) => {
-   const value = await createUser(data);
-   console.log(value)
+    try {
+      const value = await createUser(data);
+      if (!value) {
+        toast.error('Error!');
+      }
+      toast.success('User created successfully');
+      router.push('/signIn')//navigate the user to the login page once successful
+
+    } catch (error) {
+      throw new Error(
+        'error creating user'
+      );
+    }
   }
 
   return (
