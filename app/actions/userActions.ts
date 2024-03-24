@@ -20,4 +20,6 @@ import { FieldValues } from 'react-hook-form'
 
     const {hashedPassword: pass, ...rest} = user
     return {rest}
-}
+};
+
+export const validateUser = async () => {};

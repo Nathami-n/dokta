@@ -3,6 +3,7 @@ import { useState } from 'react'
 import { useForm, FieldValues, SubmitHandler } from 'react-hook-form';
 import Link from 'next/link'
 import { RxEyeOpen, RxEyeClosed } from 'react-icons/rx';
+import {validateUser} from '@/app/actions/userActions'
 
 const SignIn = () => {
   const [isOpen, setIsOpen] = useState(false)
