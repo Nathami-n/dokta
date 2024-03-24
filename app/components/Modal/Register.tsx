@@ -28,7 +28,7 @@ const Register: React.FC<RegisterModalProps> = ({
     flex
     flex-col
     bg-white
-    
+    z-10
     "
     >
         <Link 
