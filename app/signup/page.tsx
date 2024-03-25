@@ -198,7 +198,7 @@ const SignUp = () => {
         <button 
         onClick={(e)=> {
           e.stopPropagation()
-          signIn('google', {callbackUrl: '/'})
+          signIn('google', {callbackUrl: 'http:localhost:3000/'})
         }}
         type='button'
         className='
