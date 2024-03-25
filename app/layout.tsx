@@ -1,8 +1,10 @@
+
 import type { Metadata } from "next";
 import { Inter } from "next/font/google";
 import "./globals.css";
 import { NavBar } from "./components";
 import ToastProvider from './ToastProvider/ToastProvider'
+import UserSessionProvider from "./SessionProvider/SessionProvider";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -12,17 +14,20 @@ export const metadata: Metadata = {
 };
 
 export default function RootLayout({
-  children,
+  children
 }: Readonly<{
   children: React.ReactNode;
 }>) {
   return (
     <html lang="en">
       <body className={inter.className}>
-        <NavBar/>
-        <ToastProvider/>
-        {children}
-        </body>
+        <UserSessionProvider>
+          <NavBar />
+          <ToastProvider />
+          {children}
+        </UserSessionProvider>
+
+      </body>
     </html>
   );
 }
