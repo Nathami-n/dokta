@@ -1,9 +1,11 @@
 'use client'
 import { useState } from 'react'
+import {signIn} from 'next-auth/react' 
 import { useForm, FieldValues, SubmitHandler } from 'react-hook-form';
 import Link from 'next/link'
 import { RxEyeOpen, RxEyeClosed } from 'react-icons/rx';
 import {validateUser} from '@/app/actions/userActions'
+import toast from 'react-hot-toast';
 
 const SignIn = () => {
   const [isOpen, setIsOpen] = useState(false)
@@ -16,8 +18,21 @@ const SignIn = () => {
     }
   } = useForm<FieldValues>();
 
-  const onSubmit: SubmitHandler<FieldValues> = (data) => { 
-    
+  const onSubmit: SubmitHandler<FieldValues> = async (data) => { 
+    //call the signIn function from next-auth
+
+    const {email, password} = data;
+
+    const response = await signIn('credentials', {
+    email,
+    password,
+    redirect: false
+    }
+    )
+    if (!response){
+      toast.error("logged in successfully");
+    }
+    console.log(response);
   }
 
   return (
