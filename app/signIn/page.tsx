@@ -29,9 +29,10 @@ const SignIn = () => {
     redirect: false
     }
     )
-    if (!response){
-      toast.error("logged in successfully");
+    if (response == undefined || response.ok === false){
+      toast.error("Invalid Credentials")
     }
+    toast.success("logged in successfully")
     console.log(response);
   }
 
