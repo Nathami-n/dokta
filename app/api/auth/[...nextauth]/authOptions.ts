@@ -1,4 +1,5 @@
 import CredentialsProvider  from "next-auth/providers/credentials";
+import GoogleProvider from 'next-auth/providers/google'
 import bcrypt from 'bcrypt'
 import client from '@/app/utils/prismaClient'
 import { AuthOptions } from "next-auth";
@@ -10,6 +11,10 @@ export const authOptions: AuthOptions = {
     adapter:PrismaAdapter(client),
     //define the authentication providers
     providers: [
+        GoogleProvider({
+            clientId: process.env.GOOGLE_CLIENT_ID as string,
+            clientSecret: process.env.GOOGLE_CLIENT_SECRET as string
+        }),
         CredentialsProvider({
             name:'Credentials',
             credentials: {

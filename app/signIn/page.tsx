@@ -6,9 +6,11 @@ import Link from 'next/link'
 import { RxEyeOpen, RxEyeClosed } from 'react-icons/rx';
 import {validateUser} from '@/app/actions/userActions'
 import toast from 'react-hot-toast';
+import { useRouter } from 'next/navigation';
 
 const SignIn = () => {
   const [isOpen, setIsOpen] = useState(false)
+  const router = useRouter()
   const {
     register,
     handleSubmit,
@@ -31,9 +33,12 @@ const SignIn = () => {
     )
     if (response == undefined || response.ok === false){
       toast.error("Invalid Credentials")
-    }
+      return;
+    } else {
     toast.success("logged in successfully")
     console.log(response);
+    router.push('/');
+    }
   }
 
   return (
