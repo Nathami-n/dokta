@@ -6,6 +6,8 @@ import { RxEyeOpen, RxEyeClosed } from 'react-icons/rx';
 import { createUser } from '@/app/actions/userActions'
 import toast from 'react-hot-toast';
 import { useRouter } from 'next/navigation'
+import Image from 'next/image';
+import { signIn } from 'next-auth/react';
 
 const SignUp = () => {
   const router = useRouter();
@@ -23,9 +25,12 @@ const SignUp = () => {
       const value = await createUser(data);
       if (!value) {
         toast.error('Error!');
+        return
       }
+     if(value) {
       toast.success('User created successfully');
-      router.push('/signIn')//navigate the user to the login page once successful
+      // router.push('/signIn')
+     }//navigate the user to the login page once successful
 
     } catch (error) {
       throw new Error(
@@ -189,6 +194,35 @@ const SignUp = () => {
       p-3
       '>
           Continue
+        </button>
+        <button 
+        onClick={(e)=> {
+          e.stopPropagation()
+          signIn('google', {callbackUrl: '/'})
+        }}
+        type='button'
+        className='
+        w-full
+        border
+        rounded-md
+        flex
+        items-center
+        transition
+        gap-12
+        p-3
+      '>
+          <Image
+          className='
+        ml-8
+          '
+          src={'/google.svg'}
+          width={20}
+          height={20}
+          alt='google icon'
+          />
+          <h1>
+          Or Continue with Google
+        </h1>
         </button>
         <div
           className=''
