@@ -1,8 +1,7 @@
+'use client'
 import { SearchBar, UserMenu, FilterLogos } from ".."
 import Link from 'next/link'
-
 const Navbar = () => {
-  
   return (
     <div className="
     border-b
