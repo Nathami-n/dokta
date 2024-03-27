@@ -7,9 +7,9 @@ import { FieldValues } from 'react-hook-form'
     const {username, email, password} = data;
     const hashedPassword = await bcrypt.hash(password, 10);
     const newUser = {
-        user_name: username,
+        name: username as string,
         hashedPassword,
-        email
+        email: email as string
     }
     
     const user = await client.user.create({

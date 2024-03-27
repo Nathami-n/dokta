@@ -50,7 +50,9 @@ const Navbar: React.FC<NavbarProps> = ({
                 
             </div>
             <SearchBar/>
-            <UserMenu/>
+            <UserMenu
+            session={session}
+            />
 
         </div>
         <FilterLogos/>

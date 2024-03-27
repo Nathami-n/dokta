@@ -3,11 +3,14 @@ import { RxHamburgerMenu } from "react-icons/rx"
 import Image from 'next/image'
 import Register from '@/app/components/Modal/Register'
 import useLoginStore from '@/app/zustand/RegisterStore'
+import type {Session} from 'next-auth'
 interface UserMenuProps {
 avatarUrl?: string
+session: Session | null
 }
 const UserMenu: React.FC<UserMenuProps>= ({
-  avatarUrl
+  avatarUrl,
+  session
 }
 ) => {
   const openOrCloseModal = useLoginStore((state)=> state.onClose)
@@ -49,6 +52,7 @@ const UserMenu: React.FC<UserMenuProps>= ({
       "
       />
     <Register
+    session={session}
     login='login'
     signup='signup'
     />
