@@ -1,7 +1,14 @@
 'use client'
+import { Session } from "next-auth"
 import { SearchBar, UserMenu, FilterLogos } from ".."
 import Link from 'next/link'
-const Navbar = () => {
+
+interface NavbarProps {
+  session: Session | null
+}
+const Navbar: React.FC<NavbarProps> = ({
+  session
+}) => {
 
   return (
     <div className="

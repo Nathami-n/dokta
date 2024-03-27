@@ -29,13 +29,11 @@ const SignUp = () => {
       }
      if(value) {
       toast.success('User created successfully');
-      // router.push('/signIn')
+      router.push('/signIn')
      }//navigate the user to the login page once successful
 
     } catch (error) {
-      throw new Error(
-        'error creating user'
-      );
+      throw new Error("error" );
     }
   }
 

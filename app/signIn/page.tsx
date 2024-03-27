@@ -20,7 +20,8 @@ const SignIn = () => {
     }
   } = useForm<FieldValues>();
 
-  const onSubmit: SubmitHandler<FieldValues> = async (data) => { 
+  const onSubmit: SubmitHandler<FieldValues> = async (data) => {
+     
     //call the signIn function from next-auth
 
     const {email, password} = data;
