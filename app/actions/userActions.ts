@@ -22,4 +22,27 @@ import { FieldValues } from 'react-hook-form'
     return {rest}
 };
 
-export const validateUser = async () => {};
+export const validateUser = async (data:FieldValues) => {
+
+    const {email, password} = data;
+    try {
+        const retrievedUser = await client.user.findUnique({
+            where: {
+                email: email,
+            }
+        })
+        if(!retrievedUser) {
+            return null;
+        }
+        const isPasswordValid = await bcrypt.compare(password, retrievedUser?.hashedPassword);
+        if(!isPasswordValid) {
+            return null;
+        }
+
+        const {hashedPassword, ...rest} = retrievedUser.toObject();
+        return rest;
+
+    } catch {
+
+    }
+};

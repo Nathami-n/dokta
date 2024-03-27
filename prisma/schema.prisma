@@ -14,22 +14,26 @@ datasource db {
 }
 
 model User {
-  id String @id @default(auto()) @map("_id") @db.ObjectId
-  user_name String
-  email String @unique
+  id             String    @id @default(auto()) @map("_id") @db.ObjectId
+  user_name      String
+  email          String    @unique
+  emailVerified  DateTime?
   hashedPassword String
+  image          String?
+  createdAt      DateTime  @default(now())
+  updatedAt      DateTime  @updatedAt
 
   doctors Doctor[]
 }
 
 model Doctor {
-  id String @id @default(auto()) @map("_id") @db.ObjectId
-  name String?
+  id         String    @id @default(auto()) @map("_id") @db.ObjectId
+  name       String?
   speciality String?
-  location String?
-  charges String?
+  location   String?
+  charges    String?
   time_start DateTime?
-  end_time DateTime?
-  patient_id String @db.ObjectId
-  patient User @relation(fields: [patient_id], references: [id])
+  end_time   DateTime?
+  patient_id String    @db.ObjectId
+  patient    User      @relation(fields: [patient_id], references: [id])
 }
