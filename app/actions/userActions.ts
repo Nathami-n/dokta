@@ -46,3 +46,7 @@ export const validateUser = async (data:FieldValues) => {
 
     }
 };
+
+export const CreateService = () => {
+    
+}

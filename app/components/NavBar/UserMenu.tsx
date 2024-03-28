@@ -55,6 +55,8 @@ const UserMenu: React.FC<UserMenuProps>= ({
     session={session}
     login='login'
     signup='signup'
+    logout="logout"
+    createListing="Create on Dokta"
     />
     </div>
   )

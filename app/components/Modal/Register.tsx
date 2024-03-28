@@ -2,6 +2,8 @@
 import useLoginStore from '@/app/zustand/RegisterStore'
 import type { Session } from 'next-auth'
 import Link from 'next/link'
+import {CreateService} from '@/app/actions/userActions'
+import {FieldValues,useForm, SubmitHandler} from 'react-hook-form'
 interface RegisterModalProps {
     login?: string
     signup?:string
@@ -20,7 +22,13 @@ const Register: React.FC<RegisterModalProps> = ({
 }) => {
 
     const open = useLoginStore((state)=> state.open)
-    const close = useLoginStore((state) => state.onClose)
+    const close = useLoginStore((state) => state.onClose);
+    const {register, handleSubmit} = useForm<FieldValues>();
+
+    const onSubmit:SubmitHandler<FieldValues> = (data) => {
+        console.log(data)
+
+    }
   return (
     <>
     {open && session === null ? (
@@ -89,11 +97,46 @@ const Register: React.FC<RegisterModalProps> = ({
         >
             <h1
             className='
-            
+            text-center
             '
-            > Welcome 
-            {session.user?.name}
+            > 
+           <span className='
+           mr-1
+           '>Welcome</span>
+             <span className='
+             text-blue-500
+             text-xl
+             '>
+             {session.user?.name}!
+             </span>
             </h1>
+            <div>
+            <form 
+            onSubmit={handleSubmit(onSubmit)}
+            >
+                <input className ="
+                hidden
+                "
+                {...register(`${session.user?.email as string}`)}
+                />
+             <button
+             type='submit'
+     
+            className='
+            text-lg
+            font-semibold
+            text-blue-500
+            hover:text-rose-500
+            transition
+            w-full
+            border-b
+            p-2
+            '
+        >
+             {createListing}
+        </button>
+            </form>
+            </div>
              <Link 
         onClick={close}
         className='
