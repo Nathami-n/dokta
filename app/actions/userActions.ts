@@ -40,7 +40,7 @@ export const validateUser = async (data:FieldValues) => {
             return null;
         }
 
-        const {hashedPassword, ...rest} = retrievedUser.toObject();
+        const {hashedPassword, ...rest} = retrievedUser;
         return rest;
 
     } catch {
@@ -79,9 +79,26 @@ export const CreateService = async (data: FieldValues) => {
     }
     //check for the description
 
-    if(!service.speciality) {
-        redirect(`/create/${service?.id}/service`);
+    if(!service.speciality && !service.description && !service.location && !service.time_start && !service.end_time && !service.name) {
+       return redirect(`/create/${service?.id}/service`);
     }
-    
-    //check for the 
+    //check for the availabilty of the description
+    if(service.speciality && !service.description) {
+       return redirect(`/create/${service?.id}/description`)
+    }
 } 
+
+//create speciality
+export const createDoctorSpeciality = async (formData: FormData) => {
+    const speciality = formData.get("speciality");
+    const id = formData.get("id");
+    const res = await client.doctor.update({
+        data: {
+            speciality: speciality as string
+        },
+        where: {
+            id: id as string
+        }
+    })
+
+}

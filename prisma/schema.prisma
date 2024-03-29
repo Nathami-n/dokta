@@ -32,6 +32,7 @@ model Doctor {
   speciality String?
   location   String?
   charges    String?
+  description String?
   time_start DateTime?
   end_time   DateTime?
   patient_id String    @db.ObjectId

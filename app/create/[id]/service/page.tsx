@@ -1,6 +1,6 @@
 'use client'
 import { Categories } from '@/app/components'
-
+import Link from 'next/link'
 
 
 const Listing = () => {
@@ -48,7 +48,11 @@ const Listing = () => {
          w-[100px]
         '
         >
-          Cancel 
+         <Link 
+         href="/"
+         >
+         Cancel
+         </Link>
           </button>
           <button 
           className='
