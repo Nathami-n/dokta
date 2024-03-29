@@ -100,5 +100,5 @@ export const createDoctorSpeciality = async (formData: FormData) => {
             id: id as string
         }
     })
-
+    return redirect(`/create/${res?.id}/description`);
 }

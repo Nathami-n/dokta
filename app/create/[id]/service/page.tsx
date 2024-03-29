@@ -1,9 +1,10 @@
 'use client'
-import { Categories } from '@/app/components'
+import { createDoctorSpeciality } from '@/app/actions/userActions'
+import { Categories, FormState } from '@/app/components'
 import Link from 'next/link'
 
 
-const Listing = () => {
+const Listing = ({params}: {params:{id:string}}) => {
   return (
     <div className='
     mt-10
@@ -19,7 +20,14 @@ const Listing = () => {
             '
             >Which of these best describe your services?</h1>
         </div>
-   <form>
+   <form 
+   action={createDoctorSpeciality}
+   >
+    <input 
+    type='hidden'
+    name='id'
+    value={params.id}
+    />
     <Categories/>
     <div className='
     fixed
@@ -54,19 +62,7 @@ const Listing = () => {
          Cancel
          </Link>
           </button>
-          <button 
-          className='
-          bg-blue-500
-          hover:bg-rose-500
-          transtion-colors
-          text-white
-           p-2
-           rounded-lg
-           w-[100px]
-          '
-          >
-            Save
-          </button>
+          <FormState/>
       </div>
     </div>
    </form>

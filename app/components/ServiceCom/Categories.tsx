@@ -31,6 +31,11 @@ const Categories = () => {
             items-center
         `}
             key={item.id}>
+                <input
+                type='hidden'
+                name='speciality'
+                value={selectedCategory as string}
+                />
             <Image
             src={item.logoUrl}
             alt={item.title}
