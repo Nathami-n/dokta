@@ -25,8 +25,14 @@ const Register: React.FC<RegisterModalProps> = ({
     const close = useLoginStore((state) => state.onClose);
     const {register, handleSubmit} = useForm<FieldValues>();
 
-    const onSubmit:SubmitHandler<FieldValues> = (data) => {
-        console.log(data)
+    const onSubmit:SubmitHandler<FieldValues> = async (data) => {
+      try {
+        const response = await  CreateService(data);
+        console.log(response);
+
+      } catch(error) {
+        console.error(error);
+      }
 
     }
   return (
@@ -117,7 +123,9 @@ const Register: React.FC<RegisterModalProps> = ({
                 <input className ="
                 hidden
                 "
-                {...register(`${session.user?.email as string}`)}
+                id='email'
+                {...register(`email`)}
+                value={`${session.user?.email as string}`}
                 />
              <button
              type='submit'

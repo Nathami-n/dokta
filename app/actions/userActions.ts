@@ -1,7 +1,8 @@
 'use server'
 import client from '@/app/utils/prismaClient'
 import bcrypt from 'bcrypt'
-import { FieldValues } from 'react-hook-form'
+import type { FieldValues } from 'react-hook-form'
+import {redirect} from 'next/navigation'
 
  export const createUser =  async (data: FieldValues) => {
     const {username, email, password} = data;
@@ -47,6 +48,34 @@ export const validateUser = async (data:FieldValues) => {
     }
 };
 
-export const CreateService = () => {
-    
-}
+export const CreateService = async (data: FieldValues) => {
+    const {email} = data;
+    //get user
+    const user = await client.user.findUnique({
+        where: {
+            email: email as string
+        }
+    })
+
+    //get doctor
+    const service = await client.doctor.findMany({
+        where:{
+            patient_id: user?.id
+        },
+        orderBy: [
+            {
+                patient_id: 'desc'
+            }
+        ]
+    })
+
+    if(service.length === 0) {
+      const dokta =   await client.doctor.create({
+            data: {
+                patient_id: user?.id as string
+            }
+        })
+       redirect(`/create/${dokta?.id}/service`)
+    }
+
+} 
