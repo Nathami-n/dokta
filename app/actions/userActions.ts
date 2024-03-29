@@ -58,7 +58,7 @@ export const CreateService = async (data: FieldValues) => {
     })
 
     //get doctor
-    const service = await client.doctor.findMany({
+    const service = await client.doctor.findFirst({
         where:{
             patient_id: user?.id
         },
@@ -69,13 +69,19 @@ export const CreateService = async (data: FieldValues) => {
         ]
     })
 
-    if(service.length === 0) {
-      const dokta =   await client.doctor.create({
+    if(service === null) {
+      const dokta =  await client.doctor.create({
             data: {
                 patient_id: user?.id as string
             }
         })
        redirect(`/create/${dokta?.id}/service`)
     }
+    //check for the description
 
+    if(!service.speciality) {
+        redirect(`/create/${service?.id}/service`);
+    }
+    
+    //check for the 
 } 
