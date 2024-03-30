@@ -27,15 +27,17 @@ model User {
 }
 
 model Doctor {
-  id         String    @id @default(auto()) @map("_id") @db.ObjectId
-  name       String?
-  speciality String?
-  location   String?
-  charges    String?
+  id          String    @id @default(auto()) @map("_id") @db.ObjectId
+  name        String
+  mail        String @unique
+  phone       String?
+  speciality  String?
+  location    String?
+  charges     String?
   description String?
-  time_start DateTime?
-  end_time   DateTime?
-  image String?
-  patient_id String    @db.ObjectId
-  patient    User      @relation(fields: [patient_id], references: [id])
+  time_start  DateTime?
+  end_time    DateTime?
+  image       String?
+  patient_id  String    @db.ObjectId
+  patient     User      @relation(fields: [patient_id], references: [id])
 }

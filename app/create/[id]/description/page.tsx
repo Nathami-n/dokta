@@ -1,9 +1,22 @@
+import { createDoctorDescription } from "@/app/actions/userActions"
 import { ButtonBar } from "@/app/components"
+import toast from "react-hot-toast";
 
 const Description = () => {
+  const handleSubmit =  async (data:FormData) => {
+    const res = await createDoctorDescription(data);
+    if(res){
+      toast.success("success");
+    }
+    if(!res) {
+      toast.error("error"); 
+    }
+  }
   return (
     <>
-    <form>
+    <form 
+    action={handleSubmit}
+    >
     <div 
     className="
     max-w-7xl
@@ -51,6 +64,60 @@ const Description = () => {
           focus:border-green-500
           "
           placeholder="name..."
+          />
+        </div>
+        <div 
+        className="
+        flex
+        flex-col
+        justify-center
+        gap-y-2
+        "
+        >
+          <label 
+          htmlFor="phone"
+          >
+            Phone
+          </label>
+          <input 
+          type='text'
+          placeholder="number"
+          name="phone"
+          id="phone"
+          className="
+          outline-none
+          border
+          rounded-sm
+          p-2
+          focus:border-green-500
+          "
+          />
+        </div>
+        <div 
+        className="
+        flex
+        flex-col
+        justify-center
+        gap-y-2
+        "
+        >
+          <label 
+          htmlFor="email"
+          >
+            Email
+          </label>
+          <input 
+          type='email'
+          placeholder="email"
+          name="email"
+          id="email"
+          className="
+          outline-none
+          border
+          rounded-sm
+          p-2
+          focus:border-green-500
+          "
           />
         </div>
         <div className="
@@ -134,6 +201,8 @@ const Description = () => {
           <label htmlFor="start">Start_time:</label>
           <input 
           type="time"
+          name="start"
+          id="start"
           required
           className="
           outline-none
@@ -151,9 +220,11 @@ const Description = () => {
           gap-y-2
           " 
         >
-          <label htmlFor="start">Start_time:</label>
+          <label htmlFor="end">End_time:</label>
           <input 
           type="time"
+            id="end"
+            name='end'
           required
           className="
           outline-none

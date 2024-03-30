@@ -102,3 +102,17 @@ export const createDoctorSpeciality = async (formData: FormData) => {
     })
     return redirect(`/create/${res?.id}/description`);
 }
+
+//update the doctor services
+export const createDoctorDescription = async (formData: FormData) => {
+const name = formData.get('name');
+const mail = formData.get('email');
+const phone = formData.get('phone')
+const charges = Number(formData.get('charges'))
+const description = formData.get('description')
+const time_start = formData.get('start');
+const end_time = formData.get("end");
+const  imageFile = formData.get('image');
+
+
+}
