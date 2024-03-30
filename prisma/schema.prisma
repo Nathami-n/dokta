@@ -35,6 +35,7 @@ model Doctor {
   description String?
   time_start DateTime?
   end_time   DateTime?
+  image String?
   patient_id String    @db.ObjectId
   patient    User      @relation(fields: [patient_id], references: [id])
 }
