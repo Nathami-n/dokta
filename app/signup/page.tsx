@@ -33,7 +33,7 @@ const SignUp = () => {
      }//navigate the user to the login page once successful
 
     } catch (error) {
-      throw new Error("error" );
+      console.error(error);
     }
   }
 

@@ -21,7 +21,7 @@ import { supabase } from '../utils/supabase'
     })
 
     const {hashedPassword: pass, ...rest} = user
-    return {rest}
+    return rest
 };
 
 export const validateUser = async (data:FieldValues) => {
@@ -44,8 +44,8 @@ export const validateUser = async (data:FieldValues) => {
         const {hashedPassword, ...rest} = retrievedUser;
         return rest;
 
-    } catch {
-
+    } catch(error) {
+        return null;
     }
 };
 
@@ -106,18 +106,43 @@ export const createDoctorSpeciality = async (formData: FormData) => {
 
 //update the doctor services
 export const createDoctorDescription = async (formData: FormData) => {
-const name = formData.get('name');
-const mail = formData.get('email');
-const phone = formData.get('phone')
+const name = formData.get('name') as string;
+const mail = formData.get('email') as string;
+const phone = formData.get('phone') as string;
 
-const charges = Number(formData.get('charges'))
-const description = formData.get('description')
+const charges = formData.get('charges');
+const description = formData.get('description') as string;
 
-const time_start = formData.get('start');
-const end_time = formData.get("end");
+const docId = formData.get('docId') as string;
+
+const time_start = formData.get('start') as string;
+const end_time = formData.get("end") as string;
 const  imageFile = formData.get('image') as File;
 
-const {data} = await supabase.storage.from('Dokta').upload(`${imageFile.name}-${new Date().toISOString()}`, imageFile);
+const {data} = await supabase.storage.from('Dokta').upload(`${imageFile.name}-${new Date().toISOString()}`, imageFile, {
+    cacheControl:'259200',
+    contentType:'image/*'
+});
 
-
+ try {
+ //update the user
+ const res =  await client.doctor.update({
+    where: {
+        id: docId
+    },
+    data: {
+        mail: mail,
+        phone: phone,
+        charges: Number(charges),
+        description: description,
+        time_start: time_start,
+        end_time: end_time,
+        image: data?.path,
+        name: name,  
+    }
+ });
+ return redirect(`/create/${res?.id}/location`);
+ } catch(error) {
+    console.error("error updating service", error);
+ }
 }

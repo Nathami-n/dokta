@@ -28,15 +28,15 @@ model User {
 
 model Doctor {
   id          String    @id @default(auto()) @map("_id") @db.ObjectId
-  name        String
-  mail        String @unique
+  name        String?
+  mail        String? 
   phone       String?
   speciality  String?
   location    String?
-  charges     String?
+  charges     Int?
   description String?
-  time_start  DateTime?
-  end_time    DateTime?
+  time_start  String?
+  end_time    String?
   image       String?
   patient_id  String    @db.ObjectId
   patient     User      @relation(fields: [patient_id], references: [id])

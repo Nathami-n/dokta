@@ -2,28 +2,33 @@ import { createDoctorDescription } from "@/app/actions/userActions"
 import { ButtonBar } from "@/app/components"
 import toast from "react-hot-toast";
 
-const Description = () => {
-  const handleSubmit =  async (data:FormData) => {
-    const res = await createDoctorDescription(data);
-    if(res){
-      toast.success("success");
-    }
-    if(!res) {
-      toast.error("error"); 
-    }
+interface DescriptionProps {
+  params: {
+    id: string;
   }
+}
+const Description: React.FC<DescriptionProps> = ({
+  params
+}) => {
+ 
+  
   return (
     <>
     <form 
-    action={handleSubmit}
+    action={createDoctorDescription}
     >
+      <input
+      type="hidden"
+      value={params.id}
+      name='docId'
+      />
     <div 
     className="
     max-w-7xl
     mx-auto
     h-screen
     p-1
-    mb-[200px]
+    mb-[400px]
     "
     >
       <h1
