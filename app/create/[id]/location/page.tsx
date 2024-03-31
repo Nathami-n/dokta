@@ -1,10 +1,17 @@
+import { useCountries } from '@/app/utils/useCountries'
 import {
   Select, 
+  SelectContent, 
   SelectTrigger,
-  SelectValue
+  SelectValue,
+  SelectLabel,
+  SelectGroup,
+  SelectItem
 } from '@/components/ui/select'
 
 const Location = () => {
+  const {getAllCountries, getCountryByValue} = useCountries();
+  const allCountries = getAllCountries();
   return (
     <>
     <div 
@@ -37,6 +44,18 @@ const Location = () => {
           '>
             <SelectValue placeholder='Select Country'/>
           </SelectTrigger>
+          <SelectContent>
+          <SelectGroup>
+            <SelectLabel>Countries</SelectLabel>
+            {allCountries.map((country)=> {
+              return (
+                <SelectItem key={country.value} value={country.value}>
+                  {country.flag} {country.label}/{country.region}
+                </SelectItem>
+              )
+            })}
+          </SelectGroup>
+          </SelectContent>
           </Select>
 
         </div>
