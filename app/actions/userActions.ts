@@ -87,6 +87,7 @@ export const CreateService = async (data: FieldValues) => {
     if(service.speciality && !service.description) {
        return redirect(`/create/${service?.id}/description`)
     }
+
 } 
 
 //create speciality
@@ -124,7 +125,6 @@ const {data} = await supabase.storage.from('Dokta').upload(`${imageFile.name}-${
     contentType:'image/*'
 });
 
- try {
  //update the user
  const res =  await client.doctor.update({
     where: {
@@ -141,8 +141,5 @@ const {data} = await supabase.storage.from('Dokta').upload(`${imageFile.name}-${
         name: name,  
     }
  });
- return redirect(`/create/${res?.id}/location`);
- } catch(error) {
-    console.error("error updating service", error);
- }
+return redirect(`/create/${docId}/location`)
 }
