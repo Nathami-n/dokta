@@ -3,6 +3,7 @@ import client from '@/app/utils/prismaClient'
 import bcrypt from 'bcrypt'
 import type { FieldValues } from 'react-hook-form'
 import {redirect} from 'next/navigation'
+import { supabase } from '../utils/supabase'
 
  export const createUser =  async (data: FieldValues) => {
     const {username, email, password} = data;
@@ -108,11 +109,15 @@ export const createDoctorDescription = async (formData: FormData) => {
 const name = formData.get('name');
 const mail = formData.get('email');
 const phone = formData.get('phone')
+
 const charges = Number(formData.get('charges'))
 const description = formData.get('description')
+
 const time_start = formData.get('start');
 const end_time = formData.get("end");
-const  imageFile = formData.get('image');
+const  imageFile = formData.get('image') as File;
+
+const {data} = await supabase.storage.from('Dokta').upload(`${imageFile.name}-${new Date().toISOString()}`, imageFile);
 
 
 }
