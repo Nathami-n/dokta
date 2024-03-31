@@ -1,3 +1,4 @@
+
 import { useCountries } from '@/app/utils/useCountries'
 import {
   Select, 
@@ -8,10 +9,16 @@ import {
   SelectGroup,
   SelectItem
 } from '@/components/ui/select'
+import { Skeleton } from '@/components/ui/skeleton';
+import dynamic from 'next/dynamic';
 
 const Location = () => {
   const {getAllCountries, getCountryByValue} = useCountries();
   const allCountries = getAllCountries();
+  const LazyMap = dynamic(()=> import('@/app/components/map/Map'), {
+    ssr: false,
+    loading: ()=> <Skeleton className='h-[50vh] w-full'/>
+  })
   return (
     <>
     <div 
@@ -57,8 +64,8 @@ const Location = () => {
           </SelectGroup>
           </SelectContent>
           </Select>
-
         </div>
+        <LazyMap/>
       </div>
       </form>
     </div>
