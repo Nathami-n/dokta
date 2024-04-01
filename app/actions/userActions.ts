@@ -143,3 +143,17 @@ const {data} = await supabase.storage.from('Dokta').upload(`${imageFile.name}-${
  });
 return redirect(`/create/${docId}/location`)
 }
+
+export const createLocation =  async (formData: FormData) => {
+    const docId = formData.get('docId') as string;
+    const country = formData.get('country') as string;
+    const data = await client.doctor.update({
+        where:{
+            id: docId,
+        }, 
+        data: {
+            location: country
+        }
+    });
+    return redirect('/');
+}

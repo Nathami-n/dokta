@@ -14,8 +14,11 @@ import dynamic from 'next/dynamic';
 import Map from '@/app/components/map/Map'
 import { ButtonBar } from '@/app/components';
 import { useState } from 'react';
+import { createLocation } from '@/app/actions/userActions';
 
-const Location = () => {
+const Location = ({
+  params
+}: {params: {id: string}}) => {
   const {getAllCountries, getCountryByValue} = useCountries();
   const allCountries = getAllCountries();
   const [location, setLocation] = useState('');
@@ -42,7 +45,11 @@ const Location = () => {
       mb-8
       "> Where are you located?
       </h2>
-      <form>
+      <form 
+      action={createLocation}
+      >
+        <input type='hidden' name="docId" value={params.id}/>
+        <input type='hidden' name="country" value={location}/>
       <div className="
       max-w-7xl
       mx-auto
