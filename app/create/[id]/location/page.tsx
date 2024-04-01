@@ -1,4 +1,4 @@
-
+'use client'
 import { useCountries } from '@/app/utils/useCountries'
 import {
   Select, 
@@ -11,6 +11,7 @@ import {
 } from '@/components/ui/select'
 import { Skeleton } from '@/components/ui/skeleton';
 import dynamic from 'next/dynamic';
+import Map from '@/app/components/map/Map'
 
 const Location = () => {
   const {getAllCountries, getCountryByValue} = useCountries();
