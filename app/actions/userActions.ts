@@ -84,11 +84,31 @@ export const CreateService = async (data: FieldValues) => {
        return redirect(`/create/${service?.id}/service`);
     }
     //check for the availabilty of the description
-    if(service.speciality && !service.description) {
+    if(service.speciality && !service.description && !service.location && !service.time_start && !service.end_time && !service.name) {
        return redirect(`/create/${service?.id}/description`)
     }
+    if(service.speciality && service.description &&  !service.location && !service.time_start && !service.end_time && !service.name){
+        return redirect(`/create/${service?.id}/description`)
+    }
 
-} 
+    if(service.speciality && service.description  && !service.time_start && !service.end_time && !service.name ){
+        return redirect(`/create/${service?.id}/description`)
+    }
+    
+    if(service.speciality && service.description  && service.time_start && !service.end_time && !service.name ){
+        return redirect(`/create/${service?.id}/description`)
+    }
+    if(service.speciality && service.description  && service.time_start && service.end_time && !service.name ){
+        return redirect(`/create/${service?.id}/description`)
+    }
+    if(service.speciality && service.description  && service.time_start && service.end_time && service.name ){
+        return redirect(`/create/${service?.id}/location`)
+    }
+    if(service.location){
+        return redirect('/')
+    }
+    
+}   
 
 //create speciality
 export const createDoctorSpeciality = async (formData: FormData) => {
