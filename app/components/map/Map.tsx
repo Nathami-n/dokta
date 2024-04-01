@@ -5,13 +5,18 @@ import {
     Marker
 } from 'react-leaflet'
 import 'Leaflet/dist/leaflet.css'
-const Map = () => {
+import { useCountries } from '@/app/utils/useCountries'
+const Map = ({
+    location
+}:{location:string}) => {
+    const {getCountryByValue} = useCountries();
+    const latLang = getCountryByValue(location)?.latLang
     return (
         <MapContainer
             className='h-[50vh] rounded-lg relative z-0'
-            center={[52.505, -0.09]}
+            center={ latLang ?? [52.505, -0.09]}
             scrollWheelZoom={false}
-            zoom={13}
+            zoom={8}
         >
             <TileLayer
                 attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'

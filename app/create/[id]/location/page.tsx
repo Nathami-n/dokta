@@ -12,10 +12,13 @@ import {
 import { Skeleton } from '@/components/ui/skeleton';
 import dynamic from 'next/dynamic';
 import Map from '@/app/components/map/Map'
+import { ButtonBar } from '@/app/components';
+import { useState } from 'react';
 
 const Location = () => {
   const {getAllCountries, getCountryByValue} = useCountries();
   const allCountries = getAllCountries();
+  const [location, setLocation] = useState('');
   const LazyMap = dynamic(()=> import('@/app/components/map/Map'), {
     ssr: false,
     loading: ()=> <Skeleton className='h-[50vh] w-full'/>
@@ -26,6 +29,7 @@ const Location = () => {
     className="
     mx-auto
     max-w-7xl
+    mb-36
     "
     >
       <h2 className="
@@ -44,7 +48,7 @@ const Location = () => {
       mx-auto
       ">
         <div className="mb-5 p-4">
-          <Select required>
+          <Select required onValueChange={(value) => setLocation(value)}>
           <SelectTrigger 
           className='
             max-w-5xl
@@ -66,8 +70,9 @@ const Location = () => {
           </SelectContent>
           </Select>
         </div>
-        <LazyMap/>
+        <LazyMap location={location}/>
       </div>
+      <ButtonBar/>
       </form>
     </div>
     </>
