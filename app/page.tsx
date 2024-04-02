@@ -2,6 +2,7 @@ import { fetchService } from "./utils/FetchData";
 import { Card } from "./components";
 import CardSkeleton from "./components/CardSkeleton";
 import { Suspense } from "react";
+import ZeroItems from './components/ZeroItems'
 const Home =  async ({
   searchParams
 }:{
@@ -33,6 +34,13 @@ const DisplayItems = async ({
   searchParams
 }: {searchParams?:{filter?:string}}) => {
   const doctors = await fetchService(searchParams);
+  if(doctors.length === 0 ){
+
+  return (
+  <ZeroItems/>
+  )
+  }
+
   return (
     <>
     {doctors.map((doctor)=> {
