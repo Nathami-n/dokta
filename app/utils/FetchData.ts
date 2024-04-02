@@ -8,7 +8,8 @@ export const fetchService = async () => {
             name: true,
             image: true,
             description: true,
-            charges: true
+            charges: true,
+            location: true,
         }
  });
 
