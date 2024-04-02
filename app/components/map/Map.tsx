@@ -4,7 +4,7 @@ import {
     TileLayer,
     Marker
 } from 'react-leaflet'
-import 'Leaflet/dist/leaflet.css'
+import 'leaflet/dist/leaflet.css'
 import { useCountries } from '@/app/utils/useCountries'
 import { icon } from 'leaflet'
 const ICON = icon({

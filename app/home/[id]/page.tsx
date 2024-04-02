@@ -1,6 +1,8 @@
 import client from '@/app/utils/prismaClient'
 import Image from 'next/image'
 import { useCountries } from '@/app/utils/useCountries'
+import dynamic from 'next/dynamic'
+import { Skeleton } from '@/components/ui/skeleton'
 const DetailPage = async ({
     params
 }:{params:{
@@ -13,6 +15,10 @@ const DetailPage = async ({
         }
     })
     const country = getCountryByValue(doctor?.location as string);
+    const LazyMap = dynamic(()=> import('@/app/components/map/Map'), {
+        ssr: false,
+        loading: ()=> <Skeleton className='h-[50vh] w-full'/>
+      })
     return (
         <div className='
         p-2
@@ -64,6 +70,8 @@ const DetailPage = async ({
             <p className='font-semibold mb-1'> Charges: <span className='font-extrabold'>{doctor?.charges}/hour</span></p>
             <p className='border rounded-lg p-2 max-w-[750px]'>{doctor?.description}</p>
             </div>
+            <hr/>
+            {/* <LazyMap location={doctor?.location as string}/> */}
         </div>
     )
 }
