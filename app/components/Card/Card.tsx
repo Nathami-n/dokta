@@ -7,13 +7,15 @@ interface iCardProps {
     description: string;
     charges: number;
     location: string;
+    id: string;
 }
 const Card: React.FC<iCardProps> = ({
     name,
     image,
     description,
     charges,
-    location
+    location,
+    id
 
     }) => {
     const {getCountryByValue} = useCountries();
@@ -24,7 +26,7 @@ const Card: React.FC<iCardProps> = ({
     flex
     flex-col
     ">
-        <Link href={'/'}>
+        <Link href={`/home/${id}`}>
         {/* image */}
         <div className="
         h-72

@@ -11,6 +11,7 @@ export const fetchService = async (search:{filter?: string} | undefined) => {
             description: true,
             charges: true,
             location: true,
+            id: true
         }
  });
 

@@ -46,6 +46,7 @@ const DisplayItems = async ({
     {doctors.map((doctor)=> {
       return (
         <Card
+        id={doctor.id}
         name={doctor.name as string}
         image={doctor.image as string}
         description={doctor.description as string}
