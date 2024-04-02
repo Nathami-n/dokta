@@ -38,6 +38,7 @@ model Doctor {
   time_start  String?
   end_time    String?
   image       String?
+  complete  Boolean?
   patient_id  String    @db.ObjectId
   patient     User      @relation(fields: [patient_id], references: [id])
 }
