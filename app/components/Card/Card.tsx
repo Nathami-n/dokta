@@ -18,19 +18,20 @@ const Card: React.FC<iCardProps> = ({
     }) => {
     const {getCountryByValue} = useCountries();
     const country = getCountryByValue(location);
-    console.log(image)
+   
   return (
     <div className="
     flex
     flex-col
     ">
+        <Link href={'/'}>
         {/* image */}
         <div className="
         h-72
         relative
         ">
             <Image
-            src={`https://dqojewzndgnvyzhhkjym.supabase.co/storage/v1/object/public/Dokta/cardio.jpg-2024-04-02T05:58:23.589Z`}
+            src={`https://dqojewzndgnvyzhhkjym.supabase.co/storage/v1/object/public/Dokta/${image}`}
             alt="doctor Image"
             className="
             h-full
@@ -42,7 +43,22 @@ const Card: React.FC<iCardProps> = ({
             // width={100}
             />
         </div>
-       <Link href={'/'}>
+       <h1 className="
+       flex
+       items-center
+       gap-3
+       ">
+        <span>{name}</span>
+        <Image src={'https://cdn-icons-png.flaticon.com/512/6364/6364343.png'} 
+       width={100} 
+       height={100} 
+       alt="verified"
+       className="
+       w-4
+       h-4
+       "
+       />
+       </h1>
         <h3
         className="font-medium text-base"
         >{country?.flag} {country?.label} / {country?.region}</h3>
@@ -54,7 +70,7 @@ const Card: React.FC<iCardProps> = ({
         >
             {description}
         </p>
-        <p>ksh <span className="font-medium text-black">{charges}</span>/session</p>
+        <p>$ <span className="font-medium text-black">{charges}</span>/session</p>
        </Link>
 
     </div>

@@ -162,7 +162,7 @@ const Description: React.FC<DescriptionProps> = ({
         id='number'
         name='number'
         min='1000'
-        placeholder="in KSH"
+        placeholder="in $"
         className="
         outline-none
         border
