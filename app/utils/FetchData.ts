@@ -1,6 +1,6 @@
 import client from '@/app/utils/prismaClient'
 export const fetchService = async (search:{filter?: string} | undefined) => {
- const services = await client?.doctor.findMany({
+ const services = await client.doctor.findMany({
         where:{
         complete: true,
         speciality: search?.filter || undefined
@@ -11,9 +11,11 @@ export const fetchService = async (search:{filter?: string} | undefined) => {
             description: true,
             charges: true,
             location: true,
+            speciality: true,
             id: true
         }
  });
 
  return services;
 }
+
