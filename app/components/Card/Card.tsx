@@ -26,7 +26,7 @@ const Card: React.FC<iCardProps> = ({
     flex
     flex-col
     ">
-        <Link href={`/home/${id}`}>
+        <Link href={`/doctor/${id}`}>
         {/* image */}
         <div className="
         h-72
