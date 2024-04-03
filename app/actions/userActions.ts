@@ -188,3 +188,8 @@ export const createLocation =  async (formData: FormData) => {
     });
     return redirect('/');
 }
+
+export const redirectUserToDoctor = (formData: FormData) => {
+    const id = formData.get('id') as string;
+    redirect(`/doctor/${id}`);
+}

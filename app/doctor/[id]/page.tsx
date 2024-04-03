@@ -4,8 +4,7 @@ import { useCountries } from '@/app/utils/useCountries'
 import dynamic from 'next/dynamic'
 import { Skeleton } from '@/components/ui/skeleton'
 import { DollarSignIcon, MailIcon, MapPin, PhoneCallIcon } from 'lucide-react'
-import { Button } from '@/components/ui/button'
-import { Doktas } from '@/app/components'
+import { Doktas, BookDoctor } from '@/app/components'
 const DetailPage = async ({
     params
 }: {
@@ -59,7 +58,7 @@ const DetailPage = async ({
          className='
          grid
          grid-cols-1
-         md:grid-cols-3
+         md:grid-cols-2
          col-span-3
          border
          p-5
@@ -68,7 +67,7 @@ const DetailPage = async ({
          '
         >
           {/* image */}
-            <div className='relative h-72 p-20'>
+            <div className='relative h-72 p-20 md:col-span-2'>
              <Image
              src={`https://dqojewzndgnvyzhhkjym.supabase.co/storage/v1/object/public/Dokta/${doctor?.image}`}
              layout='fill'
@@ -83,11 +82,9 @@ const DetailPage = async ({
                     {/* info */}
                     <div
                         className='
-            col-span-2
             flex
             flex-col
             gap-2
-            md:ml-12
             items-baseline
             '
                     >
@@ -155,15 +152,7 @@ const DetailPage = async ({
                         >
                             {doctor?.speciality}
                         </h2>
-                        <Button
-                            className='
-                rounded-full
-                mt-1
-                bg-blue-500
-                '
-                        >
-                            Book appointment
-                        </Button>
+                     <BookDoctor/>
                     </div>
                 </div>
                 <div

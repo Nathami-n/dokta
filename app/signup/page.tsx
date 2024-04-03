@@ -46,6 +46,7 @@ const SignUp = () => {
     justify-center
     items-center
     gap-3
+    mt-4
     "
     >
       <h1 className='
@@ -54,6 +55,7 @@ const SignUp = () => {
       font-bold
       text-center
       mb-5
+      mt-5
       '>Register Now</h1>
       <form
         className='

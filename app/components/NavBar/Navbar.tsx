@@ -47,6 +47,24 @@ const Navbar: React.FC<NavbarProps> = ({
               .
               </span>
               </Link>
+             <Link href='/'
+             className="
+             text-3xl
+             font-bold
+             text-blue-500
+              hover:text-red-500
+              transition
+              sm:hidden
+             "
+             >D 
+             <span className="
+             font-extrabold
+             text-rose-600
+             text-4xl
+             ">
+              .
+              </span>
+              </Link>
                 
             </div>
             <SearchBar/>

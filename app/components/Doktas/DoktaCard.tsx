@@ -1,5 +1,5 @@
 import Image from 'next/image'
-import Link from 'next/link'
+import {redirectUserToDoctor} from '@/app/actions/userActions'
 interface iDoktaProps {
     doctor: {
     name: string ;
@@ -16,8 +16,9 @@ const DoktaCard: React.FC<iDoktaProps> = ({
 }) => {
     return (
         <form
-        action
+        action={redirectUserToDoctor}
         >
+            <input type="hidden" name="id" value={doctor.id as string}/>
             <div
         className='
         bg-gray-400/10
