@@ -49,11 +49,12 @@ const DetailPage = async ({
         className='
         grid
         grid-cols-1
-        md:grid-cols-4
+        lg:grid-cols-2
         md:gap-x-3
         '
         >
                 {/* Details */}
+                <div>
                 <div
          className='
          grid
@@ -76,7 +77,6 @@ const DetailPage = async ({
                      rounded-lg
                     object-cover
                      w-full
-                     h-full
                      '
                         />
                     </div>
@@ -165,15 +165,16 @@ const DetailPage = async ({
                             Book appointment
                         </Button>
                     </div>
-                    <div
+                </div>
+                <div
                 className='
                 border
                 p-3 
                 rounded-lg
-                mt-9
                 w-full
                 md:col-span-3
                 md:p-6
+                mt-6
                 ' 
                 >
                     <h2

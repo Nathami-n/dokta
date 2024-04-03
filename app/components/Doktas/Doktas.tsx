@@ -1,4 +1,4 @@
-import { allData } from "@/app/utils/FetchData"
+
 import { Dokta } from "..";
 
 interface iDoktaProps {
@@ -24,14 +24,22 @@ const Doktas: React.FC<iDoktaProps> =  async ({
         rounded-lg
         md:mt-5
         md:w-full
+        lg:grid-cols-2
         "
         >
             <h2 className="font-bold text-xl text-center">More Services!</h2>
 
-            <div>
+            <div 
+            className="
+            mx-auto
+            "
+            >
                 {doctors?.map(doctor=> {
                     return(
-                        <Dokta key={doctor?.id} doctor={doctor}/>
+                        <Dokta
+                         key={doctor?.id} 
+                        doctor={doctor}
+                        />
                     )
                 })}
             </div>
