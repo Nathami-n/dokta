@@ -20,6 +20,7 @@ model User {
   emailVerified  DateTime?
   hashedPassword String
   image          String?
+  isDoctor       Boolean? @default(false)
   createdAt      DateTime  @default(now())
   updatedAt      DateTime  @updatedAt
 

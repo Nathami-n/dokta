@@ -32,8 +32,7 @@ const DetailPage = async ({
             flex-col
             items-center
             justify-center
-           
-            '
+            mb-8            '
             >
                 
             <h1 
@@ -71,7 +70,7 @@ const DetailPage = async ({
             <p className='border rounded-lg p-2 max-w-[750px]'>{doctor?.description}</p>
             </div>
             <hr/>
-            {/* <LazyMap location={doctor?.location as string}/> */}
+            <LazyMap location={doctor?.location as string}/>
         </div>
     )
 }

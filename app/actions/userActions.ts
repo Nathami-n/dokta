@@ -6,12 +6,13 @@ import {redirect} from 'next/navigation'
 import { supabase } from '../utils/supabase'
 
  export const createUser =  async (data: FieldValues) => {
-    const {username, email, password} = data;
+    const {username, email, password,isDoctor} = data;
     const hashedPassword = await bcrypt.hash(password, 10);
     const newUser = {
         name: username as string,
         hashedPassword,
-        email: email as string
+        email: email as string,
+        isDoctor: isDoctor ? true : false
     }
     
     const user = await client.user.create({
@@ -70,38 +71,50 @@ export const CreateService = async (data: FieldValues) => {
         ]
     })
 
-    if(service === null || service.complete) {
+    if(service === null && user?.isDoctor === false) {
+        return redirect('/unverified')
+     }
+    if(service === null && user?.isDoctor === true) {
       const dokta =  await client.doctor.create({
             data: {
                 patient_id: user?.id as string
             }
         })
        redirect(`/create/${dokta?.id}/service`)
+    };
+    if(service?.complete){
+        const dokta =  await client.doctor.create({
+            data: {
+                patient_id: user?.id as string
+            }
+        })
+       redirect(`/create/${dokta?.id}/service`)
     }
+
     //check for the description
 
-    if(!service.speciality && !service.description && !service.location && !service.time_start && !service.end_time && !service.name) {
+    if(!service?.speciality && !service?.description && !service?.location && !service?.time_start && !service?.end_time && !service?.name ) {
        return redirect(`/create/${service?.id}/service`);
     }
     //check for the availabilty of the description
-    if(service.speciality && service.description && !service.time_start && !service.end_time && !service.name) {
+    if(service?.speciality && service?.description && !service?.time_start && !service?.end_time && !service?.name) {
        return redirect(`/create/${service?.id}/description`)
     }
-    if(service.speciality && service.description  && !service.time_start && !service.end_time && !service.name){
+    if(service?.speciality && service?.description  && !service?.time_start && !service?.end_time && !service?.name){
         return redirect(`/create/${service?.id}/description`)
     }
 
-    if(service.speciality && service.description && service.time_start && !service.end_time && !service.name ){
+    if(service?.speciality && service?.description && service?.time_start && !service?.end_time && !service?.name ){
         return redirect(`/create/${service?.id}/description`)
     }
     
-    if(service.speciality && service.description && service.time_start && service.end_time && !service.name ){
+    if(service?.speciality && service?.description && service?.time_start && service?.end_time && !service?.name ){
         return redirect(`/create/${service?.id}/description`)
     }
-    if(service.speciality && service.description  && service.time_start && service.end_time && service.name && !service.location ){
+    if(service?.speciality && service?.description  && service?.time_start && service?.end_time && service?.name && !service?.location ){
         return redirect(`/create/${service?.id}/location`)
     }
-    if(service.location){
+    if(service?.location){
         return redirect('/')
     }
     

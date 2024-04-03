@@ -80,7 +80,7 @@ const Register: React.FC<RegisterModalProps> = ({
          border-b
          p-2
          '
-        href={'/login'}
+        href={'/signIn'}
         > {login}
         </Link>
     </div>

@@ -180,6 +180,25 @@ const SignUp = () => {
             }
           </div>
         </div>
+        <div
+        className='
+        flex
+        items-center
+        justify-between
+        p-2
+        '
+        >
+          <label htmlFor='isDoctor'>
+            Are you a certified doctor?
+          </label>
+          <input
+          type="checkbox"
+          {...register('isDoctor')}
+          id='isDoctor'
+          value='yes'
+          className='cursor-pointer'
+          />
+        </div>
 
         <button className='
       w-full
