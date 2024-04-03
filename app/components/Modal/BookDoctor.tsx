@@ -1,5 +1,5 @@
 'use client'
-import {useState} from 'react'
+import {useEffect, useState} from 'react'
 import {
     Dialog,
     DialogContent,
@@ -11,12 +11,20 @@ import {
 import { Button } from '@/components/ui/button'
 import {Calendar} from '@/components/ui/calendar'
 import {CalendarDays, Clock} from 'lucide-react'
+import { getTime } from '@/app/utils/getTime'
+interface iTimeSlot {
+    time: string
+}
  const BookDoctor = () => {
     const [date, setDate] = useState<Date | undefined>(new Date());
+    const [timeSlot, setTimeSlots] = useState<iTimeSlot[] | undefined>()
 
-    const isPastDay = (day) => {
+    const isPastDay = (day: Date) => {
         return day < new Date()
     }
+    useEffect(()=>{
+        getTime(setTimeSlots)
+    }, [])
     return(
         <Dialog>
             <DialogTrigger>
@@ -33,9 +41,9 @@ import {CalendarDays, Clock} from 'lucide-react'
                     <DialogTitle>Book Doctor</DialogTitle>
                     <DialogDescription>
                         <div>
-                            <div className='grid grid-cols-1 md:grid-cols-2 mt-5'>
+                            <div className='grid grid-cols-1 md:grid-cols-4 mt-5 '>
                                 {/* Calendar */}
-                                <div className="flex flex-col gap-3 items-baseline">
+                                <div className="flex flex-col gap-3 items-baseline md:col-span-2">
                                     <h2 className='flex gap-2 items-center'>
                                         <CalendarDays className='text-blue-500 h-5 w-5'/>
                                         Select Date
@@ -48,7 +56,25 @@ import {CalendarDays, Clock} from 'lucide-react'
                                     className='rounded-md border'
                                     />
                                 </div>
+                                {/* Time slot */}
+                                <div className='mt-3 md:mt-0 md:col-span-2'>
+                                    <h2 className='flex gap-2 items-center mb-3'>
+                                    <Clock className='text-blue-500 h-5 w-5'/>
+                                    Select convenient time
+                                    </h2>
+                                <div className='grid grid-cols-3 gap-2 border rounded-lg p-5'>
+                                    {timeSlot?.map((item, i)=> {
+                                        return (
+                                            <h2 
+                                            className={`p-2 border cursor-pointer text-center hover:bg-blue-500 hover:text-white transition rounded-full`}
+                                            >
+                                                {item?.time}
+                                            </h2>
+                                        )
+                                    })}
 
+                                </div>
+                                </div>
                             </div>
                         </div>
                     </DialogDescription>
