@@ -3,13 +3,13 @@ import { Dokta } from "..";
 
 interface iDoktaProps {
     doctors: {
-    name: string ;
-    image: string ;
-    description: string;
-    charges: number;
-    location: string;
-    speciality: string;
-    id: string;
+    name: string |null;
+    image: string | null;
+    description: string | null;
+    charges: number | null;
+    location: string | null;
+    speciality: string | null;
+    id: string | null;
     }[]
 }
 const Doktas: React.FC<iDoktaProps> =  async ({
