@@ -2,13 +2,13 @@ import Image from 'next/image'
 import {redirectUserToDoctor} from '@/app/actions/userActions'
 interface iDoktaProps {
     doctor: {
-    name: string ;
-    image: string ;
-    description: string;
-    charges: number;
-    location: string;
-    speciality: string;
-    id: string;
+    name: string | null ;
+    image: string | null ;
+    description: string | null;
+    charges: number | null;
+    location: string | null;
+    speciality: string | null;
+    id: string | null;
     }
 }
 const DoktaCard: React.FC<iDoktaProps> = ({
