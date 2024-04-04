@@ -41,7 +41,7 @@ interface iTimeSlot {
                     <DialogTitle>Book Doctor</DialogTitle>
                     <DialogDescription>
                         <div>
-                            <div className='grid grid-cols-1 md:grid-cols-4 mt-5 '>
+                            <div className=' max-md:h-[200px] max-md:overflow-y-scroll md:grid md:grid-cols-4 mt-5 '>
                                 {/* Calendar */}
                                 <div className="flex flex-col gap-3 items-baseline md:col-span-2">
                                     <h2 className='flex gap-2 items-center'>
