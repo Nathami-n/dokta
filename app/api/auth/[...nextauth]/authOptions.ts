@@ -4,6 +4,7 @@ import bcrypt from 'bcrypt'
 import client from '@/app/utils/prismaClient'
 import { AuthOptions } from "next-auth";
 import {PrismaAdapter} from '@next-auth/prisma-adapter'
+import { redirect } from "next/navigation";
 
 export const authOptions: AuthOptions = {
 
@@ -48,7 +49,7 @@ export const authOptions: AuthOptions = {
                 }
 
                 return user;
-            }
+            },
             })
         ],
 
@@ -56,7 +57,7 @@ export const authOptions: AuthOptions = {
         strategy: 'jwt',
         maxAge: 1 * 24 * 60 * 60, //lasts one day
     },
-
+   
     pages: {
         signIn: '/'
     },

@@ -2,13 +2,21 @@
 import { Session } from "next-auth"
 import { SearchBar, UserMenu, FilterLogos } from ".."
 import Link from 'next/link'
+import { useEffect } from "react"
 
-interface NavbarProps {
+interface iNavBarProps {
   session: Session | null
 }
-const Navbar: React.FC<NavbarProps> = ({
+const Navbar: React.FC<iNavBarProps> =  ({
   session
 }) => {
+ 
+//  useEffect(()=>{
+
+//   if(session?.user) {
+//     window.location.reload();
+//   }
+//  }, [session])
 
   return (
     <div className="

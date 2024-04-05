@@ -29,7 +29,8 @@ const SignIn = () => {
     const response = await signIn('credentials', {
     email,
     password,
-    redirect: false
+    redirect: true,
+    callbackUrl:'/',
     }
     )
     if (response == undefined || response.ok === false){
@@ -38,7 +39,6 @@ const SignIn = () => {
     } else {
     toast.success("logged in successfully")
     console.log(response);
-    router.push('/');
     }
   }
 
