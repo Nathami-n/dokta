@@ -1,16 +1,30 @@
 'use client'
 import {CiSearch} from 'react-icons/ci'
-interface SearchBarProps {
+import {updateSearch} from '@/app/actions/userActions'
+import {useState} from 'react'
+import {usePathname, useRouter} from 'next/navigation'
 
-}
 
 const SearchBar = () => {
+  const [query, setQuery] = useState('');
+  const router = useRouter();
+  const pathname = usePathname();
+  
+  const handleSearch = (e:React.FormEvent) => {
+    e.preventDefault();
+    const newLetter = query.trim().split('')[0].toUpperCase();
+    console.log(newLetter)
+    const newQuery = query.trim().split('').splice(0, 1, newLetter ).join('');
+    console.log(newQuery)
+    const url = `${pathname}/?filter=${newQuery}`;
+    router.push(url);
+  }
   return (
     <div className='
     max-sm:w-auto
     '>
    <form
-    action=""
+    onSubmit={handleSearch}
     className="
     border
     hover:shadow-md
@@ -31,6 +45,9 @@ const SearchBar = () => {
     w-full
     "
     placeholder="search..."
+    name="search"
+    value={query}
+    onChange={(e) => setQuery(e.target.value)}
      />
      <CiSearch 
      type='submit'

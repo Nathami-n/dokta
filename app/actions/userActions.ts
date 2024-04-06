@@ -193,3 +193,10 @@ export const redirectUserToDoctor = (formData: FormData) => {
     const id = formData.get('id') as string;
     redirect(`/doctor/${id}`);
 }
+
+export const updateSearch = (formData: FormData) => {
+    const filter = formData.get('search');
+     return {
+        query: filter as string,
+     };
+}
