@@ -9,14 +9,14 @@ const SearchBar = () => {
   const [query, setQuery] = useState('');
   const router = useRouter();
   const pathname = usePathname();
-  
+
   const handleSearch = (e:React.FormEvent) => {
     e.preventDefault();
-    const newLetter = query.trim().split('')[0].toUpperCase();
-    console.log(newLetter)
-    const newQuery = query.trim().split('').splice(0, 1, newLetter ).join('');
-    console.log(newQuery)
-    const url = `${pathname}/?filter=${newQuery}`;
+    const newLetter = query?.trim().split('')[0].toUpperCase();
+    console.log(query)
+    const newQuery = query.trim().split('').splice(0, 1, newLetter);
+    console.log(newQuery);
+    const url = `${pathname}/?filter=${query}`;
     router.push(url);
   }
   return (
@@ -49,8 +49,16 @@ const SearchBar = () => {
     value={query}
     onChange={(e) => setQuery(e.target.value)}
      />
-     <CiSearch 
-     type='submit'
+   <button
+    disabled={query.length ? false : true}
+    type='submit'
+    className='
+    absolute
+    top-2
+    right-3
+    '
+   >
+   <CiSearch 
      className="
      bg-blue-500
      text-white
@@ -59,12 +67,10 @@ const SearchBar = () => {
      hover:bg-rose-500
      cursor-pointer
      p-1
-     absolute
-     top-2
-     right-3
       "
      size={35}
      />
+   </button>
    </form>
    </div>
   )
