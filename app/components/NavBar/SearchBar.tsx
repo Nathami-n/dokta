@@ -12,11 +12,9 @@ const SearchBar = () => {
 
   const handleSearch = (e:React.FormEvent) => {
     e.preventDefault();
-    const newLetter = query?.trim().split('')[0].toUpperCase();
-    console.log(query)
-    const newQuery = query.trim().split('').splice(0, 1, newLetter);
-    console.log(newQuery);
-    const url = `${pathname}/?filter=${query}`;
+    const newLetter = query?.trim().charAt(0).toUpperCase();
+    const newQuery = newLetter + query?.trim().slice(1);
+    const url = `${pathname}/?filter=${newQuery}`;
     router.push(url);
   }
   return (
