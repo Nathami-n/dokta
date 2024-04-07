@@ -17,6 +17,7 @@ interface iTimeSlot {
 }
  const BookDoctor = () => {
     const [date, setDate] = useState<Date | undefined>(new Date());
+    const [chosenTime, setChosenTime] = useState('');
     const [timeSlot, setTimeSlots] = useState<iTimeSlot[] | undefined>()
 
     const isPastDay = (day: Date) => {
@@ -66,7 +67,9 @@ interface iTimeSlot {
                                     {timeSlot?.map((item, i)=> {
                                         return (
                                             <h2 
-                                            className={`p-2 border cursor-pointer text-center hover:bg-blue-500 hover:text-white transition rounded-full`}
+                                            onClick={()=> setChosenTime(item?.time)}
+                                            key={i}
+                                            className={`p-2 border cursor-pointer text-center hover:bg-blue-500 hover:text-white transition rounded-full ${chosenTime === item?.time ? ' bg-rose-500 text-white': ''}`}
                                             >
                                                 {item?.time}
                                             </h2>
