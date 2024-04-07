@@ -43,7 +43,9 @@ interface iTimeSlot {
                 <DialogHeader>
                     <DialogTitle>Book Doctor</DialogTitle>
                     <DialogDescription>
-                        <form>
+                        <form 
+                        onSubmit={()=> console.log('hello')}
+                        >
                             <div className=' max-md:h-[400px] max-md:flex max-md:flex-col max-md:items-center max-md:overflow-y-scroll md:grid md:grid-cols-4 mt-5 '>
                                 {/* Calendar */}
                                 <div className="flex flex-col gap-3 items-baseline md:col-span-2">
@@ -81,18 +83,22 @@ interface iTimeSlot {
                                 </div>
                                 </div>
                             </div>
+                            <div className='flex items-center  border-t py-3 px-3 justify-between'>
+                                <Button
+                                type='button'
+                                variant='destructive'
+                                >Cancel
+                                </Button>
+                                <Button 
+                                type='submit'
+                                variant='secondary'
+                                >
+                                    Save
+                                    </Button>
+                            </div>
                         </form>
                     </DialogDescription>
                 </DialogHeader>
-                <DialogFooter>
-                        <DialogClose>
-                            <div>
-                            <Button>
-                                Cancel
-                            </Button>
-                            </div>
-                        </DialogClose>
-                </DialogFooter>
             </DialogContent>
         </Dialog>
     ) 
