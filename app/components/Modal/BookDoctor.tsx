@@ -6,7 +6,9 @@ import {
     DialogDescription,
     DialogHeader,
     DialogTitle,
-    DialogTrigger
+    DialogTrigger,
+    DialogFooter,
+    DialogClose
 } from '@/components/ui/dialog'
 import { Button } from '@/components/ui/button'
 import {Calendar} from '@/components/ui/calendar'
@@ -41,8 +43,8 @@ interface iTimeSlot {
                 <DialogHeader>
                     <DialogTitle>Book Doctor</DialogTitle>
                     <DialogDescription>
-                        <div>
-                            <div className=' max-md:h-[200px] max-md:overflow-y-scroll md:grid md:grid-cols-4 mt-5 '>
+                        <form>
+                            <div className=' max-md:h-[400px] max-md:flex max-md:flex-col max-md:items-center max-md:overflow-y-scroll md:grid md:grid-cols-4 mt-5 '>
                                 {/* Calendar */}
                                 <div className="flex flex-col gap-3 items-baseline md:col-span-2">
                                     <h2 className='flex gap-2 items-center'>
@@ -79,9 +81,18 @@ interface iTimeSlot {
                                 </div>
                                 </div>
                             </div>
-                        </div>
+                        </form>
                     </DialogDescription>
                 </DialogHeader>
+                <DialogFooter>
+                        <DialogClose>
+                            <div>
+                            <Button>
+                                Cancel
+                            </Button>
+                            </div>
+                        </DialogClose>
+                </DialogFooter>
             </DialogContent>
         </Dialog>
     ) 
