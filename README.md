@@ -22,7 +22,7 @@ To make contribution these are the steps:
 
 - Install the dependencies
    ```bash
-       npm i
+   npm i
    ```
 - Run the Project
   ```bash
